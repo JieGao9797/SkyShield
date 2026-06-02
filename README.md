@@ -29,13 +29,14 @@ SkyShield targets **front-view monocular semantic occupancy prediction** for low
 Given a front-view RGB image at time `t`, the model predicts semantic occupancy inside the current front-camera frustum:
 
 $$
-O_t^{\mathrm{front}} =
-\left\{
+O_t^{\mathrm{front}}
+=
+\{
 (v_i, y_i)
 \mid
 v_i \in \mathbb{Z}^3,\;
 y_i \in \mathcal{C} \cup \{c_{\mathrm{free}}\}
-\right\}.
+\}.
 $$
 
 Here, `v_i` denotes a voxel coordinate, `y_i` denotes the voxel label, `C` is the occupied semantic class set, and `c_free` denotes observed free space.
@@ -170,6 +171,7 @@ TP_c
 $$
 
 KAR-mIoU therefore asks a safety-oriented question: when occupancy prediction fails, does it fail in the region where the UAV has the least time to recover?
+
 
 ---
 
