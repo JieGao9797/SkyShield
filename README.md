@@ -22,26 +22,16 @@ The repository will provide the SkyShield benchmark, the KAR-mIoU safety-aware e
 
 ---
 
+
 ## Task Definition
 
-SkyShield targets **front-view monocular semantic occupancy prediction** for low-altitude UAV flight.
+SkyShield studies **front-view monocular semantic occupancy prediction** for low-altitude UAV flight. Given a single front-view RGB image, the model predicts the semantic occupancy of the current camera frustum, including occupied voxels with semantic labels and observed free-space voxels.
 
-Given a front-view RGB image at time `t`, the model predicts semantic occupancy inside the current front-camera frustum:
+The task is UAV-centered and safety-oriented. Unlike ground-vehicle occupancy, low-altitude UAV perception must handle frame-wise changes in pose, altitude, roll, pitch, and yaw, while reasoning about the forward 3D space the UAV may soon enter. Unknown regions are excluded from calibrated supervision.
 
-$$
-O_t^{\mathrm{front}}
-=
-\{
-(v_i, y_i)
-\mid
-v_i \in \mathbb{Z}^3,\;
-y_i \in \mathcal{C} \cup \{c_{\mathrm{free}}\}
-\}.
-$$
+In essence, SkyShield asks whether a UAV can infer the occupied and free space ahead from monocular vision under dynamic aerial motion.
 
-Here, `v_i` denotes a voxel coordinate, `y_i` denotes the voxel label, `C` is the occupied semantic class set, and `c_free` denotes observed free space.
 
-Unknown regions are ignored during calibrated semantic supervision. The task is observer-centered: the UAV must recover the 3D space in front of its moving camera, rather than relying on a fixed ground-plane assumption or a static sensor rig.
 
 ---
 
@@ -116,62 +106,13 @@ Each sample provides a monocular front-view RGB image, frame-wise 6-DoF UAV body
 
 ## Evaluation Metrics
 
-SkyShield reports both standard mIoU and **Kinematics-Aware Risk mIoU (KAR-mIoU)**.
+SkyShield reports both **mIoU** and **Kinematics-Aware Risk mIoU (KAR-mIoU)**.
 
-### mIoU
+mIoU measures standard class-wise semantic occupancy accuracy by treating all valid voxels equally. While useful for evaluating global reconstruction quality, it does not distinguish between harmless distant errors and safety-critical near-field failures.
 
-Standard mean Intersection-over-Union evaluates voxel-level semantic occupancy quality by treating all valid voxels equally. While useful for measuring global reconstruction accuracy, it is weakly aligned with flight safety because errors near the UAV are usually more critical than errors in distant or unreachable regions.
+KAR-mIoU addresses this limitation by weighting false positives and false negatives according to UAV motion and time-to-collision. Errors in short-TTC regions receive larger penalties, while correct predictions are not artificially rewarded by proximity.
 
-### KAR-mIoU
-
-KAR-mIoU is a UAV-centric and dynamics-aware metric that re-weights occupancy errors according to time-to-collision. It penalizes false positives and false negatives in short-TTC regions, while leaving true positives unweighted to avoid inflating the score through easy near-field predictions.
-
-For voxel `i`, the omnidirectional worst-case time-to-collision is defined as:
-
-$$
-\mathrm{TTC}^{\mathrm{owc}}_i
-=
-\frac{\lVert x_i \rVert_2}
-{\max(\lVert v_t \rVert_2, \epsilon)}.
-$$
-
-Here, `x_i` is the voxel center in the UAV-centered frame, and `v_t` is the UAV velocity.
-
-The corresponding error penalty is:
-
-$$
-p_i
-=
-1
-+
-\mathbf{1}
-\left[
-\mathrm{TTC}^{\mathrm{owc}}_i \leq T_h
-\right]
-\gamma
-\exp
-\left(
--\lambda \mathrm{TTC}^{\mathrm{owc}}_i
-\right).
-$$
-
-For semantic class `c`, KAR-IoU is computed as:
-
-$$
-\mathrm{KAR\text{-}IoU}_c
-=
-\frac{TP_c}
-{
-TP_c
-+
-\sum_{i \in FP_c} p_i
-+
-\sum_{i \in FN_c} p_i
-}.
-$$
-
-KAR-mIoU therefore asks a safety-oriented question: when occupancy prediction fails, does it fail in the region where the UAV has the least time to recover?
-
+Thus, mIoU measures overall occupancy quality, whereas KAR-mIoU measures whether prediction failures occur in the regions most critical to flight safety. For the detailed definition and evaluation protocol of KAR-mIoU, please refer to the paper.
 
 ---
 
