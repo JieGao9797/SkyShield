@@ -10,6 +10,24 @@
   <a href="#"><img src="https://img.shields.io/badge/Code-Coming%20Soon-green"></a>
 </p>
 
+<div align="center">
+
+  <img src="assets/SkyShield.png" alt="SkyShield overview" width="92%">
+
+  <br><br>
+
+  <a href="assets/SkyShield.mp4">
+    <img src="assets/SkyShield_demo.gif" alt="SkyShield demo video preview" width="92%">
+  </a>
+
+  <br>
+
+  <sub>SkyShield studies front-frustum semantic occupancy prediction for safety-critical low-altitude UAV autonomy. Click the animation to open the MP4 demo.</sub>
+
+</div>
+
+---
+
 ## Introduction
 
 **SkyShield** is a front-view monocular semantic occupancy benchmark for urban low-altitude UAV autonomy. It targets UAV flight below 20 meters, where safe navigation requires not only recognizing visible objects, but also understanding the occupied and free 3D space that the aerial agent is about to enter.
@@ -160,5 +178,3 @@ For questions about the dataset, benchmark, or code release, please contact:
 ```text
 jiegao@stu.xmu.edu.cn
 ```
-
-
