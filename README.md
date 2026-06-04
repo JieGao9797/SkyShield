@@ -14,7 +14,7 @@
 
   <img src="assets/SkyShield.png" alt="SkyShield overview" width="92%">
 
-  <br><br>
+  <br>
 
   <a href="assets/SkyShield.mp4">
     <img src="assets/SkyShield_demo.gif" alt="SkyShield demo video preview" width="92%">
