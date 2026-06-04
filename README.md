@@ -22,7 +22,7 @@
 
   <br>
 
-  <sub>SkyShield studies front-frustum semantic occupancy prediction for safety-critical low-altitude UAV autonomy. Click the animation to open the MP4 demo.</sub>
+  <sub>SkyShield studies front-frustum semantic occupancy prediction for safety-critical low-altitude UAV autonomy. </sub>
 
 </div>
 
