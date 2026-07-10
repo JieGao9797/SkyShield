@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://arxiv.org/abs/2606.00747"><img src="https://img.shields.io/badge/arXiv-2606.00747-b31b1b.svg"></a>
-  <a href="#"><img src="https://img.shields.io/badge/Dataset-Coming%20Soon-blue"></a>
+  <a href="https://forms.gle/HwyBsE34eeaeih496"><img src="https://img.shields.io/badge/Dataset-Request%20Access-blue"></a>
   <a href="#"><img src="https://img.shields.io/badge/Code-Coming%20Soon-green"></a>
 </p>
 
@@ -36,7 +36,7 @@ Existing UAV perception datasets mainly focus on 2D detection, tracking, segment
 
 This setting is motivated by the safety-critical nature of low-altitude flight. In human-scale urban airspace, thin geometry, vegetation, occlusion, cluttered corridors, dynamic actors, and frame-wise changing UAV attitude can directly determine whether the forward space is traversable. SkyShield therefore studies occupancy not merely as a perception target, but as a safety interface between high-level UAV autonomy and physical flight.
 
-The repository will provide the SkyShield benchmark, the KAR-mIoU safety-aware evaluation metric, and the SkyOcc reference baseline. Code and dataset will be released publicly.
+The repository provides the SkyShield benchmark, the KAR-mIoU safety-aware evaluation metric, and the SkyOcc reference baseline. The dataset is currently available upon request for academic and non-commercial research through a Google request form. The code will be released publicly.
 
 ---
 
@@ -134,6 +134,34 @@ Thus, mIoU measures overall occupancy quality, whereas KAR-mIoU measures whether
 
 ---
 
+## Requesting the Dataset
+
+The **SkyShield** dataset is available for **academic and non-commercial research purposes**.
+
+To request access, please complete the following Google Form:
+
+> **Dataset Request Form:**  
+> https://forms.gle/HwyBsE34eeaeih496
+
+After submitting the request, we will review your application and send the download instructions via email if it is approved.
+
+We have already provided early access to the dataset for several research groups who requested it prior to the public release. From now on, all new dataset requests will be processed through the Google Form to ensure a consistent and organized distribution process.
+
+By requesting access to the dataset, users agree to the following terms:
+
+- The dataset is used only for academic and non-commercial research.
+- The dataset will not be redistributed, republished, or shared with third parties.
+- Publications using the SkyShield dataset should appropriately cite our paper.
+
+Dataset requests are reviewed on a rolling basis. Approved applicants will receive the download instructions via email.
+
+For questions regarding dataset access, please contact:
+
+```text
+jiegao@stu.xmu.edu.cn
+```
+---
+
 ## Baseline: SkyOcc
 
 **SkyOcc** is the reference monocular UAV occupancy baseline for SkyShield. It is designed as a geometry-first and safety-prior model for front-view semantic occupancy prediction under dynamic low-altitude UAV motion.
@@ -173,7 +201,7 @@ SkyShield is built upon CARLA and is inspired by recent progress in semantic occ
 
 ## Contact
 
-For questions about the dataset, benchmark, or code release, please contact:
+For questions regarding the dataset, benchmark, code release, or dataset access requests, please contact:
 
 ```text
 jiegao@stu.xmu.edu.cn
